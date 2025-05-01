@@ -55,5 +55,7 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     //kapt(libs.androidx.room.compiler) //kapt dice que se generará codigo en tiempo de compilación
     ksp(libs.androidx.room.compiler) //Se debe declarar en plugins aqui y en el otro build.gradle
+    //ViewModelScope y Coroutines
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
 }
