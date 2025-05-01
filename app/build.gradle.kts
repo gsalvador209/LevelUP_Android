@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp) //Tras agregar el TOML ya se puede usar
 }
 
 android {
@@ -33,6 +34,10 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+    buildFeatures{
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -45,4 +50,10 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //Room
+    implementation(libs.androidx.room.ktx)
+    //kapt(libs.androidx.room.compiler) //kapt dice que se generará codigo en tiempo de compilación
+    ksp(libs.androidx.room.compiler) //Se debe declarar en plugins aqui y en el otro build.gradle
+
 }
