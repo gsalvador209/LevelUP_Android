@@ -9,8 +9,8 @@ import java.util.UUID
 
 @Entity(tableName = Constants.DATABASE_LIST_TABLE)
 data class ListEntity(
-    @PrimaryKey
-    val id: UUID = UUID.randomUUID(),
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
 
     val name: String,
 

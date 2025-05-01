@@ -17,7 +17,7 @@ data class TaskEntity(
     val description: String? = null,
 
     @ColumnInfo(name = "list_id")
-    val listId : UUID,
+    val listId : Long,
 
     @ColumnInfo(name = "start_date")
     val startDate: Date? = null,
