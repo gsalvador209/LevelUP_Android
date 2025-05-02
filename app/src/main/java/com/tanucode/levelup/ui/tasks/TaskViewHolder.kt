@@ -1,7 +1,5 @@
-package com.tanucode.levelup.ui.main
+package com.tanucode.levelup.ui.tasks
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.tanucode.levelup.data.db.entity.TaskEntity
 import com.tanucode.levelup.databinding.TaskElementBinding

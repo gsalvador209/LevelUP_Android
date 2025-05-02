@@ -1,4 +1,4 @@
-package com.tanucode.levelup.ui.main
+package com.tanucode.levelup.ui.tasks
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
