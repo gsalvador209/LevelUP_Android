@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@id/tasksFragment">
+
+    <fragment
+        android:id="@+id/spaceFragment"
+        android:name="com.tanucode.levelup.ui.space.SpaceFragment"
+        android:label="Space"/>
+
+    <fragment
+        android:id="@+id/statsFragment"
+        android:name="com.tanucode.levelup.ui.stats.StatsFragment"
+        android:label="Stats"/>
+
+    <fragment
+        android:id="@+id/tasksFragment"
+        android:name="com.tanucode.levelup.ui.tasks.TasksFragment"
+        android:label="Tasks"/>
+
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.tanucode.levelup.ui.calendar.CalendarFragment"
+        android:label="Calendar"/>
+</navigation>

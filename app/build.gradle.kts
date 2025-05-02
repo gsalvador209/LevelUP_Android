@@ -58,4 +58,7 @@ dependencies {
     //ViewModelScope y Coroutines
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
+    //Navigation Component
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 }
