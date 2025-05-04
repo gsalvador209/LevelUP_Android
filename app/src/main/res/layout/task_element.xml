@@ -1,20 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="8dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    card_view:cardCornerRadius="8dp"
-    card_view:cardElevation="4dp">
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
 
-    <TextView
-        android:id="@+id/tvTitle"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:text="Título de tarea"
-        android:textSize="18sp"
-        android:textColor="@android:color/black" />
+        android:layout_height="match_parent">
+
+        <CheckBox
+            android:id="@+id/cbComplete"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvTitle"
+
+            app:layout_constraintTop_toTopOf="@id/tvTitle"
+            app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+
+            android:layout_marginHorizontal="10dp"/>
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:text=""
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:maxLines="1"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="3dp"
+            android:layout_marginTop="10dp"
+
+
+            app:layout_constraintStart_toEndOf="@+id/cbComplete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvDescription"
+            android:textSize="10dp"
+            android:textColor="@android:color/darker_gray"
+            android:maxLines="2"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+
+            app:layout_constraintStart_toStartOf="@id/tvTitle"
+            app:layout_constraintEnd_toEndOf="@id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/fbChipsContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tvDescription"
+                app:layout_constraintStart_toStartOf="@id/tvDescription"
+                android:layout_marginTop="8dp"
+                app:flexWrap="wrap"
+                app:justifyContent="flex_start">
+                
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipList"
+                    app:chipIcon="@drawable/ic_inbox"
+                    android:text="Inbox"
+
+                    android:textSize="12sp"
+                    app:closeIconEnabled="false"
+                    app:chipIconSize="16dp"
+
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    app:chipCornerRadius="15dp"
+                    />
+            </com.google.android.flexbox.FlexboxLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
 </androidx.cardview.widget.CardView>
