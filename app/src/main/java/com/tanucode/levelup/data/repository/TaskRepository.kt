@@ -2,11 +2,15 @@ package com.tanucode.levelup.data.repository
 
 import com.tanucode.levelup.data.db.dao.TaskDao
 import com.tanucode.levelup.data.db.entity.TaskEntity
+import kotlinx.coroutines.flow.Flow
 import java.util.UUID
 
 class TaskRepository (
     private val taskDao: TaskDao
 ){
+
+    val allTasks : Flow<List<TaskEntity>> = taskDao.getAllTasks()
+
     suspend fun insertTask(task : TaskEntity){
         taskDao.insertTask(task)
     }
@@ -31,9 +35,11 @@ class TaskRepository (
         return taskDao.getAllPendingTasks()
     }
 
-    suspend fun getAllTasks(): List<TaskEntity> {
-        return taskDao.getAllTasks()
-    }
+
+
+//    suspend fun getAllTasks(): List<TaskEntity> {
+//        return taskDao.getAllTasks()
+//    }
 
 
 }

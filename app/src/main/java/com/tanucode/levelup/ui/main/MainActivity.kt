@@ -26,7 +26,15 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
+        //Bottom nav
         binding.bottomNavigation.setupWithNavController(navController)
+
+        //Fab
+        binding.fabAdd.setOnClickListener {
+            AddTaskDialogFragment().show(supportFragmentManager, "AddTaskDialog")
+        }
+
+
 
     }
 

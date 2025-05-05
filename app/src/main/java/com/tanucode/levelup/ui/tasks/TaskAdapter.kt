@@ -2,13 +2,19 @@ package com.tanucode.levelup.ui.tasks
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.tanucode.levelup.data.db.entity.TaskEntity
 import com.tanucode.levelup.databinding.TaskElementBinding
 
-class TaskAdapter(
-    private var tasks: List <TaskEntity> //Lista de tareas a mostrar
-) : RecyclerView.Adapter<TaskViewHolder>() {
+class TaskAdapter() : RecyclerView.Adapter<TaskViewHolder>() {
+
+    private var currentTasks : List<TaskEntity> = emptyList()
+
+    fun updateData(newData: List<TaskEntity>){
+        this.currentTasks = newData
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int ): TaskViewHolder {
         val binding = TaskElementBinding.inflate(LayoutInflater.from(parent.context),parent,false)
@@ -16,17 +22,11 @@ class TaskAdapter(
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-
-        val task = tasks[position]
+        val task = currentTasks[position]
         holder.bind(task)
 
     }
 
-    override fun getItemCount(): Int = tasks.size
-
-    fun updateTasks(newTasks: List <TaskEntity>){
-        tasks = newTasks
-        notifyDataSetChanged()
-    }
+    override fun getItemCount(): Int = currentTasks.size
 
 }

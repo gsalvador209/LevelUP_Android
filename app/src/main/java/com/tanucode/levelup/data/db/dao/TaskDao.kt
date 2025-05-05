@@ -2,6 +2,7 @@ package com.tanucode.levelup.data.db.dao
 
 import androidx.room.*
 import com.tanucode.levelup.data.db.entity.TaskEntity
+import kotlinx.coroutines.flow.Flow
 import java.util.UUID
 
 @Dao
@@ -25,6 +26,6 @@ interface TaskDao {
     suspend fun getAllPendingTasks(): List<TaskEntity>
 
     @Query("SELECT * FROM task ORDER BY created_at DESC")
-    suspend fun getAllTasks(): List<TaskEntity>
+    fun getAllTasks(): Flow<List<TaskEntity>>
 
 }

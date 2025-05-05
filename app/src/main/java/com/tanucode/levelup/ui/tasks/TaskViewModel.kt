@@ -2,6 +2,8 @@ package com.tanucode.levelup.ui.tasks
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.tanucode.levelup.application.LevelUpApp
 import com.tanucode.levelup.data.db.entity.TaskEntity
@@ -10,18 +12,19 @@ import kotlinx.coroutines.launch
 
 class TaskViewModel(application: Application)
     : AndroidViewModel(application) { //De esta manera tengo acceso a los repos
+
         private val taskRepository : TaskRepository by lazy {
-            (application as LevelUpApp).taskRepository
+        (application as LevelUpApp).taskRepository
         }
 
-    suspend fun getAllTasks(): List<TaskEntity>{
-        return taskRepository.getAllTasks()
-    }
+        val tasksLiveData : LiveData<List<TaskEntity>> = taskRepository.allTasks.asLiveData()
 
-    fun insertTask(task: TaskEntity) {
-        viewModelScope.launch {
-            taskRepository.insertTask(task)
+
+        fun addNewTask(task: TaskEntity) {
+            viewModelScope.launch {
+                taskRepository.insertTask(task)
+
+                //_tasks.postValue(taskRepository.getAllTasks())
+            }
         }
-    }
-
 }
