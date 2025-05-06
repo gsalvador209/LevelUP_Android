@@ -17,14 +17,12 @@ class TaskViewModel(application: Application)
         (application as LevelUpApp).taskRepository
         }
 
-        val tasksLiveData : LiveData<List<TaskEntity>> = taskRepository.allTasks.asLiveData()
+        val tasksLiveData : LiveData<List<TaskEntity>> = taskRepository.allTasks.asLiveData() //Expone a otras clases la info de las tareas
 
 
         fun addNewTask(task: TaskEntity) {
             viewModelScope.launch {
                 taskRepository.insertTask(task)
-
-                //_tasks.postValue(taskRepository.getAllTasks())
             }
         }
 }

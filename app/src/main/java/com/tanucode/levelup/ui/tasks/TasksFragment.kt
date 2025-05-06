@@ -42,7 +42,6 @@ class TasksFragment : Fragment() {
 
         setupRecyclerView()
         setupObservers()
-        //loadTasks()
     }
 
     private fun setupRecyclerView(){

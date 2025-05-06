@@ -1,16 +1,11 @@
 package com.tanucode.levelup.ui.main
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.tanucode.levelup.R
 import com.tanucode.levelup.databinding.ActivityMainBinding
-import com.tanucode.levelup.ui.tasks.TaskAdapter
-import com.tanucode.levelup.ui.tasks.TaskViewModel
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         //Fab
         binding.fabAdd.setOnClickListener {
-            AddTaskDialogFragment().show(supportFragmentManager, "AddTaskDialog")
+            AddTaskBottomSheetFragment().show(supportFragmentManager, "AddTaskDialog")
         }
 
 
