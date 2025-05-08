@@ -45,7 +45,9 @@ class TasksFragment : Fragment() {
     }
 
     private fun setupRecyclerView(){
-        taskAdapter = TaskAdapter()
+        taskAdapter = TaskAdapter(){ updatedTask ->
+            taskViewModel.updateTask(updatedTask)
+        }
         binding.taskRecyclerView.apply {
             adapter = taskAdapter
             layoutManager = LinearLayoutManager(requireContext())
@@ -63,7 +65,6 @@ class TasksFragment : Fragment() {
             }
         )
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

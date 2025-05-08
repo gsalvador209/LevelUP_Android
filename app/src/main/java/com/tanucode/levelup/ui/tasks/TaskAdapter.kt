@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tanucode.levelup.data.db.entity.TaskEntity
 import com.tanucode.levelup.databinding.TaskElementBinding
 
-class TaskAdapter() : RecyclerView.Adapter<TaskViewHolder>() {
+class TaskAdapter(
+    private  val onTaskCheckedChange : (TaskEntity) -> Unit
+) : RecyclerView.Adapter<TaskViewHolder>() {
 
     private var currentTasks : List<TaskEntity> = emptyList()
 
@@ -23,7 +25,9 @@ class TaskAdapter() : RecyclerView.Adapter<TaskViewHolder>() {
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val task = currentTasks[position]
-        holder.bind(task)
+        holder.bind(task) {updatedTask -> //La lambda declarada para actualizar
+            onTaskCheckedChange(updatedTask)
+        }
 
     }
 

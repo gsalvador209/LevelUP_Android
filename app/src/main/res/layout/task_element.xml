@@ -13,6 +13,7 @@
 
         <CheckBox
             android:id="@+id/cbComplete"
+
             android:layout_width="20dp"
             android:layout_height="20dp"
             app:layout_constraintStart_toStartOf="parent"

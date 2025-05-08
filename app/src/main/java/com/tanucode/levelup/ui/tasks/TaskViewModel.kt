@@ -25,4 +25,10 @@ class TaskViewModel(application: Application)
                 taskRepository.insertTask(task)
             }
         }
+
+        fun updateTask(task: TaskEntity){
+            viewModelScope.launch {
+                taskRepository.updateTask(task)
+            }
+        }
 }
