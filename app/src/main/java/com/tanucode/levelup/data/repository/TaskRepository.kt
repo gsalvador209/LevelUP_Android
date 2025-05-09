@@ -1,7 +1,9 @@
 package com.tanucode.levelup.data.repository
 
+import androidx.lifecycle.LiveData
 import com.tanucode.levelup.data.db.dao.TaskDao
 import com.tanucode.levelup.data.db.entity.TaskEntity
+import com.tanucode.levelup.data.db.entity.TaskWithListEntity
 import kotlinx.coroutines.flow.Flow
 import java.util.UUID
 
@@ -34,6 +36,9 @@ class TaskRepository (
     suspend fun getAllPendingTasks(): List<TaskEntity> {
         return taskDao.getAllPendingTasks()
     }
+
+    fun getAllTasksWithList(): LiveData<List<TaskWithListEntity>> =
+        taskDao.getAllTasksWithList()
 
 
 
