@@ -21,8 +21,8 @@ import com.tanucode.levelup.util.Constants
             ListEntity::class,
             UserEntity::class
                ],
-    version = 1,
-    exportSchema = true
+    version = 2,
+    exportSchema = false
 )
 
 @TypeConverters(
