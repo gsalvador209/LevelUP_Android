@@ -89,8 +89,8 @@ class AddTaskBottomSheetFragment :  BottomSheetDialogFragment() {
                     TaskEntity(
                         title = taskTitle,
                         description = desc,
-                        listId = selectedListId),
-                        deadline = deadlineTimestamp
+                        listId = selectedListId,
+                        deadline = deadlineTimestamp)
                 )
                 dismiss()
             }

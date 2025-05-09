@@ -20,7 +20,7 @@ class TaskWithListViewModel(application: Application)
     //val tasksLiveData : LiveData<List<TaskEntity>> = taskRepository.allTasks.asLiveData() //Expone a otras clases la info de las tareas
         val tasksWithList: LiveData<List<TaskWithListEntity>> = taskRepository.getAllTasksWithList()
 
-        fun addNewTask(task: TaskEntity, deadline: Long?) {
+        fun addNewTask(task: TaskEntity) {
             viewModelScope.launch {
                 taskRepository.insertTask(task)
             }

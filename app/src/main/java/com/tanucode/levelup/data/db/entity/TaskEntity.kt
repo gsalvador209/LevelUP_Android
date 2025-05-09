@@ -10,8 +10,8 @@ import java.util.UUID
 
 @Entity(tableName = Constants.DATABASE_TASK_TABLE)
 data class TaskEntity(
-    @PrimaryKey
-    val id: UUID = UUID.randomUUID(),
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
 
     val title : String,
     val description: String? = null,

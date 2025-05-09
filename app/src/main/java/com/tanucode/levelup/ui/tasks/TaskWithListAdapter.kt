@@ -11,12 +11,17 @@ class TaskWithListAdapter(
     private  val onTaskCheckedChange : (TaskEntity) -> Unit
 ) : RecyclerView.Adapter<TaskWithListViewHolder>() {
 
+    init {
+        setHasStableIds(true)
+    }
+
+
     private var currentTasks : List<TaskWithListEntity> = emptyList()
 
-    fun updateData(newData: List<TaskWithListEntity>){
-        this.currentTasks = newData
-        notifyDataSetChanged()
-    }
+    override fun getItemId(position: Int): Long =
+        currentTasks[position].task.id
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int ): TaskWithListViewHolder {
         val binding = TaskWithListElementBinding.inflate(LayoutInflater.from(parent.context),parent,false)
@@ -26,8 +31,14 @@ class TaskWithListAdapter(
     override fun onBindViewHolder(holder: TaskWithListViewHolder, position: Int) {
         holder.bind(currentTasks[position]) {updatedTask -> //La lambda declarada para actualizar
             onTaskCheckedChange(updatedTask)
+            notifyItemChanged(position)
         }
 
+    }
+
+    fun updateData(newData: List<TaskWithListEntity>){
+        this.currentTasks = newData
+        //notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int = currentTasks.size
