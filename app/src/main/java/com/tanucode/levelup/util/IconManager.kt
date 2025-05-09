@@ -30,7 +30,8 @@ object IconManager {
         "ic_plant"     to R.drawable.ic_plant,
         "ic_work"      to R.drawable.ic_work,
         "ic_coffee" to R.drawable.ic_coffee,
-        "ic_reward" to R.drawable.ic_reward
+        "ic_reward" to R.drawable.ic_reward,
+        "ic_unknown" to R.drawable.ic_question_mark
     )
 
 
