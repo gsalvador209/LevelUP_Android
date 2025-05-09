@@ -24,6 +24,8 @@ data class TaskEntity(
     @ColumnInfo(name = "end_date")
     val endDate: Date? = null,
 
+    val deadline: Date? = null,
+
     @ColumnInfo(name = "estimated_duration")
     val estimatedDuration : Int? = null,
 

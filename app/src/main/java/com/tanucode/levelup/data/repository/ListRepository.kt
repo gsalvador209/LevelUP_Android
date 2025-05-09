@@ -1,4 +1,5 @@
 package com.tanucode.levelup.data.repository
+import androidx.lifecycle.LiveData
 import com.tanucode.levelup.data.db.dao.ListDao
 import com.tanucode.levelup.data.db.entity.ListEntity
 import java.util.UUID
@@ -24,4 +25,7 @@ class ListRepository(private val listDao: ListDao) {
     suspend fun getAllLists(): List<ListEntity> {
         return listDao.getAllLists()
     }
+
+    fun getAllListsLive(): LiveData<List<ListEntity>> =
+        listDao.getAllListsLive()
 }
