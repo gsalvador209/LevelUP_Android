@@ -12,11 +12,17 @@ data class ListEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
 
-    val name: String,
+    //Para listas custom
+    @ColumnInfo(name = "custom_name")
+    val customName: String? = null,
+
+    @ColumnInfo(name = "system_key")
+    val systemKey: String? = null,
 
     val type: String, // system or custom
 
-    val color: String? = null,
+    @ColumnInfo(name = "color_id")
+    val colorId: Int = 0,
 
     val icon: String? = null,
 
