@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Level Up</string>
+    <string name="stats">Estadísticas</string>
+    <string name="list_inbox">Bandeja</string>
+    <string name="list_objectives">Objetivos</string>
+    <string name="hello_blank_fragment">Fragmento en blanco</string>
+    <string name="save">Guardar</string>
+    <string name="add_new_task">Añadir tarea</string>
+    <string name="calendar">Calendario</string>
+    <string name="space">Espacio</string>
+    <string name="list">List</string>
+</resources>

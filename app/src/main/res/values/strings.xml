@@ -2,10 +2,13 @@
     <string name="app_name">Level Up</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="save">Guardar\n</string>
-    <string name="add_new_task">Añadir tarea</string>
-    <string name="calendar">Calendario\n</string>
-    <string name="Space">Espacio</string>
+    <string name="save">Save\n</string>
+    <string name="add_new_task">Add task</string>
+    <string name="calendar">Calendar\n</string>
+    <string name="space">Space</string>
     <string name="stats">Stats</string>
-    <string name="inbox">Inbox</string>
+    <string name="list_inbox">Inbox</string>
+    <string name="list_objectives">Objectives</string>
+    <string name="list">Lista</string>
+
 </resources>
