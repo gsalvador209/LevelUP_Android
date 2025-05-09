@@ -6,9 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.tabs.TabLayout
 import com.tanucode.levelup.databinding.FragmentTasksBinding
 import com.tanucode.levelup.util.Constants
 
@@ -17,8 +17,8 @@ class TasksFragment : Fragment() {
     private var _binding: FragmentTasksBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var taskWithListViewModel: TaskWithListViewModel
-    private lateinit var taskWithListAdapter: TaskWithListAdapter
+    private lateinit var vm: TaskWithListViewModel
+    private lateinit var sectionAdapter: TaskSectionAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,38 +30,43 @@ class TasksFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        vm = ViewModelProvider(this)[TaskWithListViewModel::class.java]
 
-        taskWithListViewModel = ViewModelProvider(this)[TaskWithListViewModel::class.java]
+        //Saludo
+        binding.tvGreeting.text = "Hola, Salvador"
 
-        setupRecyclerView()
+        //Pestañas
+        val lists = listOf("All", "Inbox", "Objectives")
+        lists.forEach { binding.tabLists.addTab(binding.tabLists.newTab().setText(it)) }
+        binding.tabLists.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                Log.d(Constants.LOGS_MESSAGE, "Tab selected: ${tab.text}")
+                vm.filterBy(tab.position)
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+        })
+
+        // RecyclerView y Adapter
+        sectionAdapter = TaskSectionAdapter {updatedTask ->
+            vm.updateTask(updatedTask)
+        }
+
+        binding.rvTasks.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = sectionAdapter
+        }
+
+        //Observer
         setupObservers()
     }
 
-    private fun setupRecyclerView(){
-        taskWithListAdapter = TaskWithListAdapter{ updatedTask ->
-            taskWithListViewModel.updateTask(updatedTask)
-        }
-
-        binding.taskRecyclerView.apply{
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = taskWithListAdapter
-        }
-
-    }
 
     private fun setupObservers(){
-//        taskWithListViewModel.tasksWithList.observe(
-//            viewLifecycleOwner,
-//            Observer{ tasks ->
-//                //Esta seccion se ejecuta cada ves que taskLiveData tiene un nuevo cvvalor
-//                tasks?.let{ //Si no es nullo actualizará el Recycler View
-//                    taskWithListAdapter.updateData(tasks)
-//                }
-//            }
-//        )
-        taskWithListViewModel.tasksWithList.observe(viewLifecycleOwner) {list ->
-            Log.d(Constants.LOGS_MESSAGE, "Sumitting ${list.size} tasks")
-            taskWithListAdapter.submitList(list)
+        vm.groupedTasks.observe(viewLifecycleOwner){ sections ->
+            Log.d(Constants.LOGS_MESSAGE, "Submitting ${sections.size} sections")
+            sectionAdapter.submitList(sections)
         }
     }
 
