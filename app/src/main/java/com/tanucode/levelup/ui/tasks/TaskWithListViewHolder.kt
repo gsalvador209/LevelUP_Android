@@ -25,7 +25,6 @@ class TaskWithListViewHolder(
     private val timeFormat = android.text.format.DateFormat.getTimeFormat(binding.root.context)
 
 
-
     fun bind(twl: TaskWithListEntity, onTaskCheckedChange: (TaskEntity) -> Unit){
         val task = twl.task
         val list = twl.list
@@ -82,16 +81,19 @@ class TaskWithListViewHolder(
         binding.fbChipsContainer.addView(listChip)
         chips.forEach { binding.fbChipsContainer.addView(it) }
 
-
-
         binding.apply {
             tvTitle.text = task.title
             tvDescription.isVisible = !task.description.isNullOrEmpty()
             tvDescription.text = task.description
+
+            cbComplete.setOnCheckedChangeListener(null) //No dispara el change
+            //Estado correcto
             cbComplete.isChecked = task.isCompleted
             tvTitle.paint.isStrikeThruText = task.isCompleted
 
+            //Reactiva el listener
             cbComplete.setOnCheckedChangeListener { _, isChecked ->
+
                 tvTitle.paint.isStrikeThruText = isChecked
                 val updated = task.copy(isCompleted = isChecked)
                 onTaskCheckedChange(updated)

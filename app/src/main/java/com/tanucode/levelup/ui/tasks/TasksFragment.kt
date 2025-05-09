@@ -1,6 +1,7 @@
 package com.tanucode.levelup.ui.tasks
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tanucode.levelup.databinding.FragmentTasksBinding
+import com.tanucode.levelup.util.Constants
 
 class TasksFragment : Fragment() {
 
@@ -36,25 +38,31 @@ class TasksFragment : Fragment() {
     }
 
     private fun setupRecyclerView(){
-        taskWithListAdapter = TaskWithListAdapter(){ updatedTask ->
+        taskWithListAdapter = TaskWithListAdapter{ updatedTask ->
             taskWithListViewModel.updateTask(updatedTask)
         }
-        binding.taskRecyclerView.apply {
-            adapter = taskWithListAdapter
+
+        binding.taskRecyclerView.apply{
             layoutManager = LinearLayoutManager(requireContext())
+            adapter = taskWithListAdapter
         }
+
     }
 
     private fun setupObservers(){
-        taskWithListViewModel.tasksWithList.observe(
-            viewLifecycleOwner,
-            Observer{ tasks ->
-                //Esta seccion se ejecuta cada ves que taskLiveData tiene un nuevo cvvalor
-                tasks?.let{ //Si no es nullo actualizará el Recycler View
-                    taskWithListAdapter.updateData(tasks)
-                }
-            }
-        )
+//        taskWithListViewModel.tasksWithList.observe(
+//            viewLifecycleOwner,
+//            Observer{ tasks ->
+//                //Esta seccion se ejecuta cada ves que taskLiveData tiene un nuevo cvvalor
+//                tasks?.let{ //Si no es nullo actualizará el Recycler View
+//                    taskWithListAdapter.updateData(tasks)
+//                }
+//            }
+//        )
+        taskWithListViewModel.tasksWithList.observe(viewLifecycleOwner) {list ->
+            Log.d(Constants.LOGS_MESSAGE, "Sumitting ${list.size} tasks")
+            taskWithListAdapter.submitList(list)
+        }
     }
 
     override fun onDestroyView() {

@@ -2,26 +2,15 @@ package com.tanucode.levelup.ui.tasks
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.tanucode.levelup.data.db.entity.TaskEntity
 import com.tanucode.levelup.data.db.entity.TaskWithListEntity
 import com.tanucode.levelup.databinding.TaskWithListElementBinding
 
 class TaskWithListAdapter(
-    private  val onTaskCheckedChange : (TaskEntity) -> Unit
-) : RecyclerView.Adapter<TaskWithListViewHolder>() {
-
-    init {
-        setHasStableIds(true)
-    }
-
-
-    private var currentTasks : List<TaskWithListEntity> = emptyList()
-
-    override fun getItemId(position: Int): Long =
-        currentTasks[position].task.id
-
-
+   private  val onTaskCheckedChange : (TaskEntity) -> Unit
+) : ListAdapter<TaskWithListEntity, TaskWithListViewHolder>(TaskWithListDiff) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int ): TaskWithListViewHolder {
         val binding = TaskWithListElementBinding.inflate(LayoutInflater.from(parent.context),parent,false)
@@ -29,18 +18,10 @@ class TaskWithListAdapter(
     }
 
     override fun onBindViewHolder(holder: TaskWithListViewHolder, position: Int) {
-        holder.bind(currentTasks[position]) {updatedTask -> //La lambda declarada para actualizar
+        val item = getItem(position)
+
+        holder.bind(item) { updatedTask ->
             onTaskCheckedChange(updatedTask)
-            notifyItemChanged(position)
         }
-
     }
-
-    fun updateData(newData: List<TaskWithListEntity>){
-        this.currentTasks = newData
-        //notifyDataSetChanged()
-    }
-
-    override fun getItemCount(): Int = currentTasks.size
-
 }
