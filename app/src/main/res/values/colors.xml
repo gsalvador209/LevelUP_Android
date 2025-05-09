@@ -11,5 +11,45 @@
     <color name="colorOnBackground">#1C1C1C</color>
     <color name="colorOnSurface">#1C1C1C</color>
     <color name="colorError">#FF6B6B</color>
+    <!--Colores para los chips-->
+    <!-- Miel -->
+    <color name="chip_miel_strong">#FFC857</color>
+    <color name="chip_miel_pastel">#FFF2D0</color>
+
+    <!-- Aqua -->
+    <color name="chip_aqua_strong">#00BFA6</color>
+    <color name="chip_aqua_pastel">#D1F5EE</color>
+
+    <!-- Lila -->
+    <color name="chip_lila_strong">#B388EB</color>
+    <color name="chip_lila_pastel">#E9DCFB</color>
+
+    <!-- Mandarina -->
+    <color name="chip_mandarina_strong">#FF8C42</color>
+    <color name="chip_mandarina_pastel">#FFE2CC</color>
+
+    <!-- Rosado -->
+    <color name="chip_rosado_strong">#FF6B6B</color>
+    <color name="chip_rosado_pastel">#FFD6D6</color>
+
+    <!-- Cielo -->
+    <color name="chip_cielo_strong">#5AA9E6</color>
+    <color name="chip_cielo_pastel">#D5E9FF</color>
+
+    <!-- Hierba -->
+    <color name="chip_hierba_strong">#43AA8B</color>
+    <color name="chip_hierba_pastel">#D6F3E7</color>
+
+    <!-- Coral -->
+    <color name="chip_coral_strong">#FF5D8F</color>
+    <color name="chip_coral_pastel">#FFD1E0</color>
+
+    <!-- Lavanda -->
+    <color name="chip_lavanda_strong">#8E7CC3</color>
+    <color name="chip_lavanda_pastel">#E6E0F8</color>
+
+    <!-- Grafito -->
+    <color name="chip_grafito_strong">#7A7A7A</color>
+    <color name="chip_grafito_pastel">#E0E0E0</color>
 </resources>
 
