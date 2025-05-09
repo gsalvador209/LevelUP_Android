@@ -3,11 +3,12 @@
     <!-- Dark Theme -->
     <color name="colorPrimary">#FFB347</color>
     <color name="colorOnPrimary">#1C1C1C</color>
-    <color name="colorSecondary">#AA98C8</color>
+    <color name="colorSecondary">#B298FF</color>
     <color name="colorOnSecondary">#FFFFFF</color>
     <color name="colorBackground">#121212</color>
     <color name="colorSurface">#1E1E1E</color>
     <color name="colorOnBackground">#FFFFFF</color>
     <color name="colorOnSurface">#FFFFFF</color>
     <color name="colorError">#FF8787</color>
+    <color name="hint_text_color">#BDBDBD</color>
 </resources>

@@ -10,5 +10,6 @@
     <string name="list_inbox">Inbox</string>
     <string name="list_objectives">Objectives</string>
     <string name="list">Lista</string>
+    <string name="task_description">Add description</string>
 
 </resources>
