@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+*/mole.py
+*/directory_structure.txt
