@@ -8,12 +8,15 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.tanucode.levelup.R
 import com.tanucode.levelup.data.db.entity.ListEntity
 import com.tanucode.levelup.data.db.entity.TaskEntity
 import com.tanucode.levelup.databinding.BottomSheetAddTaskBinding
+import com.tanucode.levelup.domain.model.Frequency
 import com.tanucode.levelup.ui.lists.ListViewModel
 import com.tanucode.levelup.ui.tasks.TaskWithListViewModel
 import com.tanucode.levelup.util.ListNameResolver
@@ -32,6 +35,9 @@ class AddTaskBottomSheetFragment :  BottomSheetDialogFragment() {
     private var selectedListId : Long = 0L //Id de la lista seleccionada (For default inbox)
     private var deadlineTimestamp: Long? = null
     private var descriptionVisible = false
+    private var selectedFrecuency : Frequency = Frequency.NONE
+    private var rrule : String? = null
+    private var dtstartUtc : Long? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,7 +58,6 @@ class AddTaskBottomSheetFragment :  BottomSheetDialogFragment() {
         listViewModel.allLists.observe(viewLifecycleOwner) { lists ->
             setupListSelector(lists)
         }
-
 
         //Validación del btn
         binding.etTaskTitle.addTextChangedListener(object : TextWatcher{
@@ -76,6 +81,32 @@ class AddTaskBottomSheetFragment :  BottomSheetDialogFragment() {
         //Pick de la fecha limite
         binding.btnPickDeadline.setOnClickListener {
             showTimePicker()
+        }
+
+        val freqLabels = resources.getStringArray(R.array.frequency_options)
+        binding.spnFrequency.adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_item,
+            freqLabels
+        ).also { it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item) }
+
+        binding.spnFrequency.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                v: View?,
+                pos: Int,
+                id: Long
+            ) {
+                selectedFrecuency = Frequency.entries.toTypedArray()[pos]
+                binding.btnPickRecurrence.alpha = if(selectedFrecuency == Frequency.NONE) .5f else 1f
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
+
+        }
+
+        binding.btnPickRecurrence.setOnClickListener {
+            binding.spnFrequency.performClick()
         }
 
 

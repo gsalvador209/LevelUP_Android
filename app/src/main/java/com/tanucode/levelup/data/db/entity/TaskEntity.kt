@@ -19,6 +19,13 @@ data class TaskEntity(
     @ColumnInfo(name = "list_id")
     val listId : Long,
 
+    //iCal-based recurrence rule
+    @ColumnInfo(name = "rrule")
+    val rrule: String? = null,
+
+    @ColumnInfo(name = "dtstart_utc")
+    val dtstartUtc: Long? = null,
+
     @ColumnInfo(name = "start_date")
     val startDate: Date? = null,
     @ColumnInfo(name = "end_date")
@@ -39,8 +46,8 @@ data class TaskEntity(
     @ColumnInfo(name = "was_focused")
     val wasFocused: Boolean = false,
 
-    @ColumnInfo(name = "repetition_config")
-    val repetitionConfig: String? = null, // JSON stored as String
+    //@ColumnInfo(name = "repetition_config")
+    //val repetitionConfig: String? = null, // JSON stored as String
     @ColumnInfo(name = "reminders")
     val reminders: String? = null, // JSON stored as String
 
