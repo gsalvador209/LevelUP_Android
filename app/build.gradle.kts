@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.tanucode.levelup"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -64,4 +64,9 @@ dependencies {
 
     //FlexboxLayout
     implementation(libs.google.flexbox)
+
+    //Calendar views
+    implementation(libs.android.week.view)
+    // Month-grid view
+    implementation("com.kizitonwose.calendar:view:2.7.0")
 }
