@@ -11,7 +11,7 @@ class TaskRepository (
     private val taskDao: TaskDao
 ){
 
-    val allTasks : Flow<List<TaskEntity>> = taskDao.getAllTasks()
+    val allTasks : LiveData<List<TaskEntity>> = taskDao.getAllTasks()
 
     suspend fun insertTask(task : TaskEntity){
         taskDao.insertTask(task)
@@ -24,6 +24,7 @@ class TaskRepository (
     suspend fun deleteTask(task: TaskEntity) {
         taskDao.deleteTask(task)
     }
+
 
     suspend fun getTaskById(taskId: UUID): TaskEntity? {
         return taskDao.getTaskById(taskId)
@@ -40,11 +41,8 @@ class TaskRepository (
     fun getAllTasksWithList(): LiveData<List<TaskWithListEntity>> =
         taskDao.getAllTasksWithList()
 
-
-
-//    suspend fun getAllTasks(): List<TaskEntity> {
-//        return taskDao.getAllTasks()
-//    }
+    fun getScheduledTasks() : LiveData<List<TaskEntity>> =
+        taskDao.getScheduledTask()
 
 
 }

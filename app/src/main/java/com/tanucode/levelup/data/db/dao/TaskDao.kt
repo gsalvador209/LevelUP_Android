@@ -19,17 +19,21 @@ interface TaskDao {
     @Delete
     suspend fun deleteTask(task: TaskEntity)
 
-    @Query("SELECT * FROM task WHERE id = :taskId")
+    @Query("SELECT * FROM ${Constants.DATABASE_TASK_TABLE} WHERE id = :taskId")
     suspend fun getTaskById(taskId: UUID): TaskEntity?
 
-    @Query("SELECT * FROM task WHERE list_id = :listId ORDER BY start_date ASC")
+    @Query("SELECT * FROM ${Constants.DATABASE_TASK_TABLE} WHERE list_id = :listId ORDER BY start_date ASC")
     suspend fun getTaskByList(listId: UUID): List<TaskEntity>
 
-    @Query("SELECT * FROM task WHERE is_completed = 0 ORDER BY start_date ASC")
+    @Query("SELECT * FROM ${Constants.DATABASE_TASK_TABLE} WHERE is_completed = 0 ORDER BY start_date ASC")
     suspend fun getAllPendingTasks(): List<TaskEntity>
 
-    @Query("SELECT * FROM task ORDER BY created_at DESC")
-    fun getAllTasks(): Flow<List<TaskEntity>>
+    @Query("SELECT * FROM ${Constants.DATABASE_TASK_TABLE} ORDER BY created_at DESC")
+    fun getAllTasks(): LiveData<List<TaskEntity>>
+
+    @Transaction
+    @Query("SELECT * FROM ${Constants.DATABASE_TASK_TABLE} WHERE deadline IS NOT NULL")
+    fun getScheduledTask(): LiveData<List<TaskEntity>>
 
     // Devuelve todas las tareas junto con su lista padre
     @Transaction

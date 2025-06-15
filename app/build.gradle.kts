@@ -66,7 +66,7 @@ dependencies {
     implementation(libs.google.flexbox)
 
     //Calendar views
-    implementation(libs.android.week.view)
+    implementation("com.github.thellmund.Android-Week-View:core:5.2.4")
     // Month-grid view
     implementation("com.kizitonwose.calendar:view:2.7.0")
 }
