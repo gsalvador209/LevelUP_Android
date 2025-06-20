@@ -16,10 +16,10 @@ class WeekCalendarAdapter : WeekView.SimpleAdapter<TaskEntity>(){
 
         task.deadline.let { date ->
             startTime = Calendar.getInstance().apply {
-                timeInMillis = date!! //Cambiar al Date
+                timeInMillis = date!!  - 1800000 //Cambiar al Date
             }
             endTime = Calendar.getInstance().apply {
-                timeInMillis = date!! + 1800000
+                timeInMillis = date!!
             }
 
         }
@@ -28,7 +28,6 @@ class WeekCalendarAdapter : WeekView.SimpleAdapter<TaskEntity>(){
             .setTitle(task.title)
             .setStartTime(startTime)
             .setEndTime(endTime)
-            //.setStartTime(task.startDate.time)
             .build()
 
     }
