@@ -6,74 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- 1) AppBar con saludo y monedas -->
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorSurface"
-        android:layout_marginTop="20dp"
-        app:titleTextAppearance="@style/TextAppearance.Material3.HeadlineSmall"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <TextView
-            android:id="@+id/tvGreeting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hola, Salvador"
-            android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-            <!-- plata -->
-            <TextView
-                android:id="@+id/tvSilverCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
-                android:text="9"/>
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:scaleX="1.3"
-                android:scaleY="1.3"
-                android:layout_marginEnd="10dp"
-                android:src="@drawable/ic_silver" />
-
-
-            <!-- oro -->
-            <TextView
-                android:id="@+id/tvGoldCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="3dp"
-                android:text="12"/>
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_gold_coin"
-                android:layout_marginEnd="16dp"
-                />
-
-        </LinearLayout>
-    </com.google.android.material.appbar.MaterialToolbar>
 
     <!-- 2) Pestañas de listas -->
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLists"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabIndicatorColor="@color/colorPrimary"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

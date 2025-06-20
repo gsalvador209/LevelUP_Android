@@ -33,7 +33,7 @@ class TasksFragment : Fragment() {
         vm = ViewModelProvider(this)[TaskWithListViewModel::class.java]
 
         //Saludo
-        binding.tvGreeting.text = "Hola, Salvador"
+        //binding.tvGreeting.text = "Hola, Salvador"
 
         //Pestañas
         val lists = listOf("All", "Inbox", "Objectives")
