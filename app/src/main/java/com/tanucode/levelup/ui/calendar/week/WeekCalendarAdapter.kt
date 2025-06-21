@@ -1,8 +1,10 @@
-package com.tanucode.levelup.ui.calendar
+package com.tanucode.levelup.ui.calendar.week
 
+import android.util.Log
 import com.alamkanak.weekview.WeekView
 import com.alamkanak.weekview.WeekViewEntity
 import com.tanucode.levelup.data.db.entity.TaskEntity
+import com.tanucode.levelup.util.Constants
 import java.util.Calendar
 
 class WeekCalendarAdapter : WeekView.SimpleAdapter<TaskEntity>(){
@@ -29,7 +31,11 @@ class WeekCalendarAdapter : WeekView.SimpleAdapter<TaskEntity>(){
             .setStartTime(startTime)
             .setEndTime(endTime)
             .build()
+    }
 
+    override fun onEventClick(data: TaskEntity) {
+        super.onEventClick(data)
+        Log.d(Constants.LOGS_MESSAGE,"Click on event ${data.title}")
     }
 
 }
