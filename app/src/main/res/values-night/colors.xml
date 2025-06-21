@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Dark Theme -->
-    <color name="colorPrimary">#FFB347</color>
-    <color name="colorOnPrimary">#1C1C1C</color>
-    <color name="colorSecondary">#B298FF</color>
+    <color name="colorPrimary">#B6813A</color>
+    <color name="colorPrimaryVariant">#8E6536</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorSecondary">#4F30AD</color>
+    <color name="colorSecondaryVariant">#3E2A6D</color>
     <color name="colorOnSecondary">#FFFFFF</color>
-    <color name="colorBackground">#121212</color>
-    <color name="colorSurface">#1E1E1E</color>
+    <color name="colorBackground">#1D1717</color>
+    <color name="colorSurface">#3A2E0A</color>
     <color name="colorOnBackground">#FFFFFF</color>
     <color name="colorOnSurface">#FFFFFF</color>
-    <color name="colorError">#FF8787</color>
-    <color name="hint_text_color">#BDBDBD</color>
+    <color name="colorError">#BA3535</color>
+    <color name="hint_text_color">#E6E6E6</color>
 </resources>

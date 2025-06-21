@@ -2,15 +2,17 @@
 
 <resources>
     <!-- Light Theme -->
-    <color name="colorPrimary">#FFC857</color>
-    <color name="colorOnPrimary">#1C1C1C</color>
+    <color name="colorPrimary">#CE9749</color>
+    <color name="colorPrimaryVariant">#C5B180</color>
+    <color name="colorOnPrimary">#050505</color>
     <color name="colorSecondary">#6F4AD7</color>
-    <color name="colorOnSecondary">#1C1C1C</color>
-    <color name="colorBackground">#FAF9F6</color>
-    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorSecondaryVariant">#6F5CAB</color>
+    <color name="colorOnSecondary">#050505</color>
+    <color name="colorBackground">#FFEED3</color>
+    <color name="colorSurface">#FFDFAB</color>
     <color name="colorOnBackground">#1C1C1C</color>
     <color name="colorOnSurface">#1C1C1C</color>
-    <color name="colorError">#FF6B6B</color>
+    <color name="colorError">#D13737</color>
     <color name="hint_text_color">#757575</color>
 
     <!--Colores para los chips-->
