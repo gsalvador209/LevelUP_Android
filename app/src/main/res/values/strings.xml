@@ -14,5 +14,7 @@
     <string name="day">Day</string>
     <string name="week">Week</string>
     <string name="month">Month</string>
+    <string name="select_an_hour">Select an hour</string>
+    <string name="date">Date</string>
 
 </resources>

@@ -3,6 +3,7 @@ package com.tanucode.levelup.data.db.dao
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.tanucode.levelup.data.db.entity.TaskEntity
+import com.tanucode.levelup.data.db.entity.TaskWithCompletionsEntity
 import com.tanucode.levelup.data.db.entity.TaskWithListEntity
 import com.tanucode.levelup.util.Constants
 import kotlinx.coroutines.flow.Flow
@@ -39,5 +40,12 @@ interface TaskDao {
     @Transaction
     @Query("SELECT * FROM ${Constants.DATABASE_TASK_TABLE} ORDER BY created_at DESC")
     fun getAllTasksWithList(): LiveData<List<TaskWithListEntity>>
+
+    @Transaction
+    @Query("""
+        SELECT * FROM ${Constants.DATABASE_TASK_TABLE} WHERE
+        list_id = :listId
+    """)
+    suspend fun getTasksWithCompletitions(listId: Long) : List<TaskWithCompletionsEntity>
 
 }

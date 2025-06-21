@@ -8,9 +8,11 @@ import androidx.room.TypeConverters
 import com.tanucode.levelup.data.db.converter.DateTypeConverter
 import com.tanucode.levelup.data.db.converter.UUIDTypeConverter
 import com.tanucode.levelup.data.db.dao.ListDao
+import com.tanucode.levelup.data.db.dao.StatsDao
 import com.tanucode.levelup.data.db.dao.TaskDao
 import com.tanucode.levelup.data.db.dao.UserDao
 import com.tanucode.levelup.data.db.entity.ListEntity
+import com.tanucode.levelup.data.db.entity.TaskCompletionEntity
 import com.tanucode.levelup.data.db.entity.TaskEntity
 import com.tanucode.levelup.data.db.entity.UserEntity
 import com.tanucode.levelup.util.Constants
@@ -19,9 +21,10 @@ import com.tanucode.levelup.util.Constants
     entities = [
             TaskEntity::class,
             ListEntity::class,
-            UserEntity::class
+            UserEntity::class,
+            TaskCompletionEntity::class
                ],
-    version = 6,
+    version = 7,
     exportSchema = false
 )
 
@@ -34,6 +37,7 @@ abstract class LevelUpDatabase : RoomDatabase() {
     abstract fun taskDao() : TaskDao
     abstract fun listDao() : ListDao
     abstract fun userDao() : UserDao
+    abstract fun statsDao() : StatsDao
 
     companion object {
         @Volatile

@@ -5,6 +5,7 @@ import android.app.TimePickerDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +19,9 @@ import com.tanucode.levelup.data.db.entity.TaskEntity
 import com.tanucode.levelup.databinding.BottomSheetAddTaskBinding
 import com.tanucode.levelup.domain.model.Frequency
 import com.tanucode.levelup.ui.lists.ListViewModel
+import com.tanucode.levelup.ui.schedule.TaskScheduleBottomSheetFragment
 import com.tanucode.levelup.ui.tasks.TaskWithListViewModel
+import com.tanucode.levelup.util.Constants
 import com.tanucode.levelup.util.ListNameResolver
 import java.util.Calendar
 
@@ -53,7 +56,6 @@ class AddTaskBottomSheetFragment :  BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         //Selección de la lista de tareas
         listViewModel.allLists.observe(viewLifecycleOwner) { lists ->
             setupListSelector(lists)
@@ -71,7 +73,6 @@ class AddTaskBottomSheetFragment :  BottomSheetDialogFragment() {
 
         //Toggle de la descripción
         binding.btnToggleDescription.setOnClickListener {
-
             descriptionVisible =  !descriptionVisible
             binding.etTaskDescription.visibility =
                 if (descriptionVisible) View.VISIBLE else View.GONE
@@ -79,8 +80,16 @@ class AddTaskBottomSheetFragment :  BottomSheetDialogFragment() {
         }
 
         //Pick de la fecha limite
-        binding.btnPickDeadline.setOnClickListener {
-            showTimePicker()
+        binding.btnSchedule.setOnClickListener {
+            //showTimePicker()
+            TaskScheduleBottomSheetFragment {ts ->
+                deadlineTimestamp = ts
+                Log.d(Constants.LOGS_MESSAGE,"fecha elegida: $deadlineTimestamp")
+                deadlineTimestamp.let {
+                    binding.btnSchedule.setImageResource(R.drawable.ic_event)
+                }
+            }.show(parentFragmentManager, "ScheduleTask")
+
         }
 
         val freqLabels = resources.getStringArray(R.array.frequency_options)
@@ -153,26 +162,26 @@ class AddTaskBottomSheetFragment :  BottomSheetDialogFragment() {
         }
     }
 
-    private fun showTimePicker(){
-        val c = Calendar.getInstance()
-        DatePickerDialog(requireContext(),
-            { _, year, month, day ->
-                // 2) Hora
-                TimePickerDialog(requireContext(),
-                    { _, hour, minute ->
-                        c.set(year, month, day, hour, minute)
-                        deadlineTimestamp = c.timeInMillis
-                    },
-                    c.get(Calendar.HOUR_OF_DAY),
-                    c.get(Calendar.MINUTE),
-                    true
-                ).show()
-            },
-            c.get(Calendar.YEAR),
-            c.get(Calendar.MONTH),
-            c.get(Calendar.DAY_OF_MONTH)
-        ).show()
-    }
+//    private fun showTimePicker(){
+//        val c = Calendar.getInstance()
+//        DatePickerDialog(requireContext(),
+//            { _, year, month, day ->
+//                // 2) Hora
+//                TimePickerDialog(requireContext(),
+//                    { _, hour, minute ->
+//                        c.set(year, month, day, hour, minute)
+//                        deadlineTimestamp = c.timeInMillis
+//                    },
+//                    c.get(Calendar.HOUR_OF_DAY),
+//                    c.get(Calendar.MINUTE),
+//                    true
+//                ).show()
+//            },
+//            c.get(Calendar.YEAR),
+//            c.get(Calendar.MONTH),
+//            c.get(Calendar.DAY_OF_MONTH)
+//        ).show()
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()

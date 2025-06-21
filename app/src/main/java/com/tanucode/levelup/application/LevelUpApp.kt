@@ -4,6 +4,7 @@ import android.app.Application
 import com.tanucode.levelup.data.db.LevelUpDatabase
 import com.tanucode.levelup.data.db.entity.ListEntity
 import com.tanucode.levelup.data.repository.ListRepository
+import com.tanucode.levelup.data.repository.StatsRepositoryImpl
 import com.tanucode.levelup.data.repository.TaskRepository
 import com.tanucode.levelup.data.repository.UserRepository
 import kotlinx.coroutines.CoroutineScope
@@ -19,6 +20,8 @@ class LevelUpApp : Application() {
     val listRepository: ListRepository by lazy { ListRepository(database.listDao()) }
 
     val userRepository: UserRepository by lazy { UserRepository(database.userDao()) }
+
+    val statsRepository by lazy { StatsRepositoryImpl(taskRepository) }
 
     override fun onCreate() {
         super.onCreate()

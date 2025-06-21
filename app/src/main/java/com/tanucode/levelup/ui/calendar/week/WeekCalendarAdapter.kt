@@ -23,8 +23,10 @@ class WeekCalendarAdapter : WeekView.SimpleAdapter<TaskEntity>(){
             endTime = Calendar.getInstance().apply {
                 timeInMillis = date!!
             }
-
         }
+
+
+
         return WeekViewEntity.Event.Builder(task)
             .setId(task.id)
             .setTitle(task.title)

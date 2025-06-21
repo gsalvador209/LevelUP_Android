@@ -33,7 +33,7 @@
 
 
         app:todayBackgroundColor="@color/colorSurface"
-        app:defaultEventColor="@color/colorSecondary"
+        app:defaultEventColor="@color/colorPrimary"
 
 
         app:layout_constraintEnd_toEndOf="parent"
