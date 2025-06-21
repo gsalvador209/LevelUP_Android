@@ -18,9 +18,26 @@
         android:id="@+id/calendarWeekView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+
+        app:hourHeight="40dp"
+
+        app:numberOfVisibleDays="7"
+
+        app:showFirstDayOfWeekFirst="true"
+        app:showHeaderBottomLine="true"
+
+        app:showNowLine="true"
+        app:nowLineStrokeWidth="2dp"
+        app:nowLineColor="@color/colorPrimary"
+
+
+        app:todayBackgroundColor="@color/colorSurface"
         app:defaultEventColor="@color/colorSecondary"
+
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:numberOfVisibleDays="7" />
+        />
 
 
 </FrameLayout>
