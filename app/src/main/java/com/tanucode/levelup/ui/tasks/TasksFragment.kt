@@ -50,7 +50,7 @@ class TasksFragment : Fragment() {
 
         // RecyclerView y Adapter
         sectionAdapter = TaskSectionAdapter {updatedTask ->
-            vm.updateTask(updatedTask)
+            vm.onTaskCheckedChange(updatedTask)
         }
 
         binding.rvTasks.apply {

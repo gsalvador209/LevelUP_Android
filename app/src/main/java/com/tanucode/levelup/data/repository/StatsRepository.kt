@@ -13,12 +13,18 @@ class StatsRepositoryImpl(
 ) : StatsRepository {
     override suspend fun getHeatmapData(listId: Long): Map<LocalDate, Int> {
         val taskWithCompletitions = taskRepository.getCompletionsByList(listId)
-        return taskWithCompletitions
+
+        val dates: List<LocalDate> = taskWithCompletitions
             .flatMap { it.completions }
             .map { completion ->
-                completion.completedAt.toInstant().atZone(ZoneId.systemDefault())
+                completion.completedAt
+                    .toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate()
             }
-            .groupBy { it }
-            .count()
+
+        return dates
+            .groupingBy { it }
+            .eachCount()
     }
 }

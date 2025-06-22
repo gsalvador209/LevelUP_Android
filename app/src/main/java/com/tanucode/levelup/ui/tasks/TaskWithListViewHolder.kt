@@ -93,10 +93,8 @@ class TaskWithListViewHolder(
 
             //Reactiva el listener
             cbComplete.setOnCheckedChangeListener { _, isChecked ->
-
                 tvTitle.paint.isStrikeThruText = isChecked
-                val updated = task.copy(isCompleted = isChecked)
-                onTaskCheckedChange(updated)
+                onTaskCheckedChange(task)
             }
         }
     }

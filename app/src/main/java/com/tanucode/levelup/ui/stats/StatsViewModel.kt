@@ -13,8 +13,8 @@ class StatsViewModel(
     private val statsRepository: StatsRepository
 ) : ViewModel() {
 
-    private val _heatmapData = MutableLiveData<Map<LocalDate, Int>>()
-    val heatmapData :  LiveData<Map<LocalDate, Int>> = _heatmapData //Conteo total por cada fecha
+    private val _heatmapCells = MutableLiveData<List<HeatmapCell>>()
+    val heatmapCells :  LiveData<List<HeatmapCell>> = _heatmapCells //Conteo total por cada fecha
 
     fun loadHeatmap(listId: Long, daysBack: Int = 180) = viewModelScope.launch {
         val data = statsRepository.getHeatmapData(listId)
@@ -25,7 +25,7 @@ class StatsViewModel(
         val cells = days.map {day->
             HeatmapCell(day, data[day] ?: 0)
         }
-        _heatmapData.postValue(cells)
+        _heatmapCells.postValue(cells)
 
     }
 

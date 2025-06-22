@@ -28,7 +28,7 @@ class StatsFragment : Fragment(R.layout.fragment_stats) {
 
         val listId = arguments?.getLong("LIST_ID") ?: 1L
 
-        vm.heatmapData.observe(viewLifecycleOwner){ cells ->
+        vm.heatmapCells.observe(viewLifecycleOwner){ cells ->
             heatmapAdapter.submitList(cells)
         }
         vm.loadHeatmap(listId)

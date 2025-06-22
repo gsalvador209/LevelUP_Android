@@ -1,6 +1,7 @@
 package com.tanucode.levelup.ui.tasks
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
@@ -11,6 +12,7 @@ import com.tanucode.levelup.application.LevelUpApp
 import com.tanucode.levelup.data.db.entity.TaskEntity
 import com.tanucode.levelup.data.db.entity.TaskWithListEntity
 import com.tanucode.levelup.data.repository.TaskRepository
+import com.tanucode.levelup.util.Constants
 import kotlinx.coroutines.launch
 import java.time.Instant
 import java.time.LocalDate
@@ -35,7 +37,6 @@ class TaskWithListViewModel(application: Application)
             _filterIndex.value = index
         }
 
-        // 3) LiveData combinado: tareas filtradas según _filterIndex
         private val filteredTasks: LiveData<List<TaskWithListEntity>> =
             MediatorLiveData<List<TaskWithListEntity>>().apply {
                 fun update() {
@@ -94,6 +95,13 @@ class TaskWithListViewModel(application: Application)
         if (upcoming.isNotEmpty()) { sections += TaskSection.Header("Próximas");upcoming.forEach{ sections+= TaskSection.Item(it)} }
         if (overdue.isNotEmpty())  { sections += TaskSection.Header("Vencidas"); overdue.forEach { sections+= TaskSection.Item(it) } }
         sections
+    }
+
+    fun onTaskCheckedChange(task: TaskEntity){
+        viewModelScope.launch {
+            taskRepository.toggleTaskCompletion(task)
+            Log.d(Constants.LOGS_MESSAGE, "Toggled ${task.id}, now completedAt = ${task.completedAt}")
+        }
     }
 
 

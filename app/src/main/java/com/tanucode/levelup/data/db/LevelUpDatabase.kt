@@ -9,6 +9,7 @@ import com.tanucode.levelup.data.db.converter.DateTypeConverter
 import com.tanucode.levelup.data.db.converter.UUIDTypeConverter
 import com.tanucode.levelup.data.db.dao.ListDao
 import com.tanucode.levelup.data.db.dao.StatsDao
+import com.tanucode.levelup.data.db.dao.TaskCompletionDao
 import com.tanucode.levelup.data.db.dao.TaskDao
 import com.tanucode.levelup.data.db.dao.UserDao
 import com.tanucode.levelup.data.db.entity.ListEntity
@@ -38,6 +39,7 @@ abstract class LevelUpDatabase : RoomDatabase() {
     abstract fun listDao() : ListDao
     abstract fun userDao() : UserDao
     abstract fun statsDao() : StatsDao
+    abstract fun taskCompletionDao() : TaskCompletionDao
 
     companion object {
         @Volatile

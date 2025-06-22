@@ -15,7 +15,7 @@ class LevelUpApp : Application() {
 
     val database: LevelUpDatabase by lazy { LevelUpDatabase.getDatabase(this) }
 
-    val taskRepository: TaskRepository by lazy { TaskRepository(database.taskDao()) }
+    val taskRepository: TaskRepository by lazy { TaskRepository(database,database.taskDao(),database.taskCompletionDao()) }
 
     val listRepository: ListRepository by lazy { ListRepository(database.listDao()) }
 
