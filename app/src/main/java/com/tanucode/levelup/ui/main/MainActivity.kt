@@ -1,5 +1,7 @@
 package com.tanucode.levelup.ui.main
 
+
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.size
@@ -12,6 +14,7 @@ import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.navigation.NavigationView
 import com.tanucode.levelup.R
 import com.tanucode.levelup.databinding.ActivityMainBinding
+import com.tanucode.levelup.ui.profile.ProfileActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -56,13 +59,18 @@ class MainActivity : AppCompatActivity() {
             updateMenuIcons(destination.id)
         }
 
-
         //Fab
         binding.fabAdd.setOnClickListener {
             AddTaskBottomSheetFragment().show(supportFragmentManager, "AddTaskDialog")
         }
 
+        binding.ivProfileAvatar.setOnClickListener {
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
+
     }
+
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
