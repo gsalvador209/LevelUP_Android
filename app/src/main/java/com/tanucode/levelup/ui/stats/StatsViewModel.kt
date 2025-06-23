@@ -18,7 +18,7 @@ class StatsViewModel(
     private val _statsList = MutableLiveData<List<ListStatsData>>()
     val statsList: LiveData<List<ListStatsData>> = _statsList
 
-    fun loadAllStats(daysBack: Int = 60) {
+    fun loadAllStats(daysBack: Int = 91) {
         viewModelScope.launch {
             val lists = listRepository.getAllLists() //Obtiene todas las listas de tarea
 
