@@ -25,7 +25,7 @@ import com.tanucode.levelup.util.Constants
             UserEntity::class,
             TaskCompletionEntity::class
                ],
-    version = 7,
+    version = 8,
     exportSchema = false
 )
 
