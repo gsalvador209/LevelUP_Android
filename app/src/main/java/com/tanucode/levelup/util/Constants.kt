@@ -7,4 +7,5 @@ object Constants {
     const val DATABASE_LIST_TABLE = "list"
     const val DATABASE_USER_TABLE = "user"
     const val DATABASE_COMPLETIONS_TABLE = "task_completions"
+    const val USER_ID_SINGLETON = "APP_USER"
 }
