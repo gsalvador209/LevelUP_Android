@@ -74,7 +74,15 @@ dependencies {
     // Month-grid view
     implementation(libs.view)
 
-    //Glide
+    //Para retrofit y Gson
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+
+    //Adicional para el interceptor
+    implementation(libs.logging.interceptor)
+
+    //Glide y Picasso
     implementation(libs.glide)
+    implementation(libs.picasso)
 
 }
