@@ -18,23 +18,25 @@
         android:name="com.tanucode.levelup.ui.space.SpaceHomeFragment"
         android:label="Space">
         <action
-            android:id="@+id/action_spaceHomeFragment_to_spacesFragment"
-            app:destination="@id/spacesFragment" />
-        <action
             android:id="@+id/action_spaceHomeFragment_to_storeFragment"
             app:destination="@id/storeFragment" />
+        <action
+            android:id="@+id/action_spaceHomeFragment_to_spaceEditorFragment"
+            app:destination="@id/spaceEditorFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/spacesFragment"
-        android:name="com.tanucode.levelup.ui.space.spaces.SpacesFragment"
-        android:label="Spaces"
-        tools:layout="@layout/fragment_spaces"/>
     <fragment
         android:id="@+id/statsFragment"
         android:name="com.tanucode.levelup.ui.stats.StatsFragment"
         android:label="Stats" />
     <fragment
         android:id="@+id/storeFragment"
-        android:name="com.tanucode.levelup.presentation.ui.store.StoreFragment"
+        android:name="com.tanucode.levelup.ui.space.store.StoreFragment"
         android:label="Store" />
+
+    <fragment
+        android:id="@+id/spaceEditorFragment"
+        android:name="com.tanucode.levelup.ui.space.spaces.SpaceEditorFragment"
+        android:label="Editor de Espacio"
+        tools:layout="@layout/fragment_space_editor" >
+    </fragment>
 </navigation>

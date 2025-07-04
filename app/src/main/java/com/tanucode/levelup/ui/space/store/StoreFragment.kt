@@ -1,4 +1,4 @@
-package com.tanucode.levelup.presentation.ui.store
+package com.tanucode.levelup.ui.space.store
 
 import BuyProductUseCase
 import android.os.Bundle
@@ -19,6 +19,8 @@ import com.tanucode.levelup.domain.model.Product
 import com.tanucode.levelup.domain.usecase.GetProductsUseCase
 import com.tanucode.levelup.domain.usecase.GetPurchasedProductsUseCase
 import com.tanucode.levelup.domain.usecase.PurchaseProductUseCase
+import com.tanucode.levelup.presentation.ui.store.StoreAdapter
+import com.tanucode.levelup.presentation.ui.store.StoreViewModelFactory
 import com.tanucode.levelup.presentation.viewmodel.StoreViewModel
 import kotlinx.coroutines.launch
 

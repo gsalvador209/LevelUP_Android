@@ -21,7 +21,7 @@ class SpaceHomeFragment : Fragment(R.layout.fragment_space_home) {
         }
 
         cardSpaces.setOnClickListener {
-            findNavController().navigate(R.id.action_spaceHomeFragment_to_spacesFragment)
+            findNavController().navigate(R.id.action_spaceHomeFragment_to_spaceEditorFragment)
         }
     }
 }

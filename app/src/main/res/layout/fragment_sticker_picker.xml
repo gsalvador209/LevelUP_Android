@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pickerRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+
+    <TextView
+        android:id="@+id/tvEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No has comprado stickers"
+        android:gravity="center"
+        android:visibility="gone"
+        android:textAppearance="?attr/textAppearanceBody1" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerStickers"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:visibility="gone"
+        android:numColumns="4"
+        android:layout_marginTop="8dp"/>
+
+</FrameLayout>
