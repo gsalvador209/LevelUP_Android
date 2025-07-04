@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
@@ -17,6 +20,7 @@ import com.tanucode.levelup.domain.usecase.GetProductsUseCase
 import com.tanucode.levelup.domain.usecase.GetPurchasedProductsUseCase
 import com.tanucode.levelup.domain.usecase.PurchaseProductUseCase
 import com.tanucode.levelup.presentation.viewmodel.StoreViewModel
+import kotlinx.coroutines.launch
 
 class StoreFragment : Fragment() {
 
@@ -49,7 +53,7 @@ class StoreFragment : Fragment() {
 
         }
         binding.recyclerStore.apply {
-            layoutManager = GridLayoutManager(requireContext(),2)
+            layoutManager = GridLayoutManager(requireContext(), 2)
             this.adapter = adapter
         }
 
@@ -57,9 +61,15 @@ class StoreFragment : Fragment() {
             adapter.submitList(list)
             binding.pbLoading.visibility = View.GONE
         }
-        viewModel.purchasedIds.observe(viewLifecycleOwner) { ids ->
-            adapter.setPurchasedIds(ids)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.purchasedIds.collect { ids ->
+                    adapter.setPurchasedIds(ids)
+                }
+            }
         }
+        // 4) Observamos el resultado de la compra para el Snackbar
         viewModel.buyResult.observe(viewLifecycleOwner) { success ->
             if (!success) {
                 Snackbar.make(binding.root,

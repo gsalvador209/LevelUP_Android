@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.tabs.TabLayout
@@ -17,7 +18,8 @@ class TasksFragment : Fragment() {
     private var _binding: FragmentTasksBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var vm: TaskWithListViewModel
+    private val vm: TaskWithListViewModel by viewModels()
+
     private lateinit var sectionAdapter: TaskSectionAdapter
 
     override fun onCreateView(
@@ -30,7 +32,7 @@ class TasksFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        vm = ViewModelProvider(this)[TaskWithListViewModel::class.java]
+        //vm = ViewModelProvider(this)[TaskWithListViewModel::class.java]
 
         //Saludo
         //binding.tvGreeting.text = "Hola, Salvador"
