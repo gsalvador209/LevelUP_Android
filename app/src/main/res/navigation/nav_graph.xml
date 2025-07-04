@@ -41,4 +41,8 @@
             android:id="@+id/action_storeFragment_to_spaceHomeFragment"
             app:destination="@id/spaceHomeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/statsFragment"
+        android:name="com.tanucode.levelup.ui.stats.StatsFragment"
+        android:label="Stats" />
 </navigation>
