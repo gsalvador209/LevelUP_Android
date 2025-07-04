@@ -20,5 +20,6 @@
     <string name="profile_title">Profile</string>
     <string name="tasks">Tasks</string>
     <string name="plus">+</string>
+    <string name="unknown">\??</string>
 
 </resources>

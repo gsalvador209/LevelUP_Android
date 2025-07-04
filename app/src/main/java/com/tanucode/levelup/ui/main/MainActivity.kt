@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.size
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -13,8 +14,11 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.navigation.NavigationView
 import com.tanucode.levelup.R
+import com.tanucode.levelup.application.LevelUpApp
 import com.tanucode.levelup.databinding.ActivityMainBinding
 import com.tanucode.levelup.ui.profile.ProfileActivity
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 class MainActivity : AppCompatActivity() {
 
@@ -42,6 +46,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
+
+        //Recolección de monedas
+        (application as LevelUpApp)
+            .getUserUseCase()
+            .onEach {user->
+                binding.tvSilverCount.text = user.silverCoins.toInt().toString()
+                binding.tvGoldCount.text = user.goldCoins.toInt().toString()
+            }
+            .launchIn(lifecycleScope)
+
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
