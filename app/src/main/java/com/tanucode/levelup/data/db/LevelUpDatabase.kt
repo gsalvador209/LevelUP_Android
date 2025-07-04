@@ -16,6 +16,12 @@ import com.tanucode.levelup.data.db.entity.ListEntity
 import com.tanucode.levelup.data.db.entity.TaskCompletionEntity
 import com.tanucode.levelup.data.db.entity.TaskEntity
 import com.tanucode.levelup.data.db.entity.UserEntity
+import com.tanucode.levelup.data.local.dao.OwnedStickerDao
+import com.tanucode.levelup.data.local.dao.ProductDao
+import com.tanucode.levelup.data.local.dao.SpaceDao
+import com.tanucode.levelup.data.local.entity.OwnedStickerEntity
+import com.tanucode.levelup.data.local.entity.ProductEntity
+import com.tanucode.levelup.data.local.entity.SpaceEntity
 import com.tanucode.levelup.util.Constants
 
 @Database(
@@ -23,9 +29,12 @@ import com.tanucode.levelup.util.Constants
             TaskEntity::class,
             ListEntity::class,
             UserEntity::class,
-            TaskCompletionEntity::class
+            TaskCompletionEntity::class,
+            ProductEntity::class,
+            SpaceEntity::class,
+            OwnedStickerEntity::class
                ],
-    version = 8,
+    version = 9,
     exportSchema = false
 )
 
@@ -40,6 +49,9 @@ abstract class LevelUpDatabase : RoomDatabase() {
     abstract fun userDao() : UserDao
     abstract fun statsDao() : StatsDao
     abstract fun taskCompletionDao() : TaskCompletionDao
+    abstract fun productDao() : ProductDao
+    abstract fun spaceDao(): SpaceDao
+    abstract fun ownedStickerDao() : OwnedStickerDao
 
     companion object {
         @Volatile
