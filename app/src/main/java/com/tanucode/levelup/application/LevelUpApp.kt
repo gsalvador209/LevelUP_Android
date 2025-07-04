@@ -12,6 +12,7 @@ import com.tanucode.levelup.data.remote.datasource.ProductRemoteDataSource
 import com.tanucode.levelup.data.remote.datasource.SpaceRemoteDataSource
 import com.tanucode.levelup.data.repository.ListRepository
 import com.tanucode.levelup.data.repository.OwnedStickerRepositoryImpl
+import com.tanucode.levelup.data.repository.ProductRepositoryImpl
 import com.tanucode.levelup.data.repository.StatsRepositoryImpl
 import com.tanucode.levelup.data.repository.TaskRepository
 import com.tanucode.levelup.data.repository.UserRepository
@@ -42,6 +43,8 @@ class LevelUpApp : Application() {
 
     private val productRemoteDs by lazy { ProductRemoteDataSource(ApiClient.productApi) }
     private val spaceRemoteDs   by lazy { SpaceRemoteDataSource(ApiClient.spaceApi) }
+
+    val productRepository by lazy { ProductRepositoryImpl(productLocalDs,productRemoteDs) }
 
     private val ownedStickerLocalDs by lazy { OwnedStickerLocalDataSource(database.ownedStickerDao()) }
 

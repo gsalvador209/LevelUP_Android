@@ -4,6 +4,6 @@ import com.tanucode.levelup.data.remote.model.ProductResponse
 import retrofit2.http.GET
 
 interface ProductApiService {
-    @GET("products")
+    @GET("stickers/all_stickers")
     suspend fun fetchProducts(): List<ProductResponse>
 }

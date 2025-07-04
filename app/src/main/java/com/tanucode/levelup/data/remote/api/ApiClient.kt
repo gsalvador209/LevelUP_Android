@@ -2,14 +2,13 @@ package com.tanucode.levelup.data.remote.api
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import java.util.concurrent.TimeUnit
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 
 object ApiClient {
 
-    // TODO: cambia esta URL por la de tu backend (terminada en ‘/’)
-    private const val BASE_URL = "https://tu-backend.com/api/"
+    private const val BASE_URL = "https://private-bb8f6f-stickers5.apiary-mock.com/"
 
     // Configuramos un interceptor de logs (opcional, útil en debug)
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
