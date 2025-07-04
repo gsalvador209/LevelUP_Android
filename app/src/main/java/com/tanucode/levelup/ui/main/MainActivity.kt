@@ -22,14 +22,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController : NavController
 
     private val filledIcons = mapOf(
-        R.id.spaceFragment  to R.drawable.ic_spa_fill,
+        R.id.spaceHomeFragment  to R.drawable.ic_spa_fill,
         R.id.statsFragment   to R.drawable.ic_stats_filled,
         R.id.tasksFragment to R.drawable.ic_check_circle_fill,
         R.id.calendarFragment to R.drawable.ic_calendar_fill
     )
 
     private val normalIcons = mapOf(
-        R.id.spaceFragment to R.drawable.ic_spa,
+        R.id.spaceHomeFragment to R.drawable.ic_spa,
         R.id.statsFragment to R.drawable.ic_stats,
         R.id.tasksFragment to R.drawable.ic_check_circle,
         R.id.calendarFragment to R.drawable.ic_calendar

@@ -18,5 +18,6 @@
     <string name="date">Date</string>
     <string name="name">Username</string>
     <string name="profile_title">Profile</string>
+    <string name="tasks">Tasks</string>
 
 </resources>
