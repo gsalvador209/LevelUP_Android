@@ -1,5 +1,6 @@
 package com.tanucode.levelup.presentation.ui.store
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.tanucode.levelup.databinding.ItemProductBinding
 import com.tanucode.levelup.domain.model.Product
+import com.tanucode.levelup.util.Constants
 
 class StoreAdapter(
     private val onBuyClick: (Product) -> Unit
@@ -37,11 +39,12 @@ class StoreAdapter(
                 text = if (bought) "✓" else "Buy"
                 isEnabled = !bought
                 setOnClickListener {
+                    Log.d(Constants.LOGS_MESSAGE,"Clicked buy on ${item.id}")
                     if (!bought) onBuyClick(item)
                 }
             }
 
-            //binding.btnBuy.setOnClickListener { onBuyClick(item) }
+
         }
     }
 

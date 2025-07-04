@@ -1,5 +1,6 @@
 package com.tanucode.levelup.presentation.ui.store
 
+import BuyProductUseCase
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.tanucode.levelup.domain.usecase.GetProductsUseCase
@@ -10,7 +11,7 @@ import com.tanucode.levelup.presentation.viewmodel.StoreViewModel
 class StoreViewModelFactory(
     private val getProductsUseCase: GetProductsUseCase,
     private val getPurchasedProductsUseCase: GetPurchasedProductsUseCase,
-    private val purchaseProductUseCase: PurchaseProductUseCase
+    private val buyProductUseCase: BuyProductUseCase
 ) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
@@ -19,7 +20,7 @@ class StoreViewModelFactory(
             return StoreViewModel(
                 getProductsUseCase,
                 getPurchasedProductsUseCase,
-                purchaseProductUseCase
+                buyProductUseCase
             ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

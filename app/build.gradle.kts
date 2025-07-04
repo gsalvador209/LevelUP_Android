@@ -85,4 +85,9 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.picasso)
 
+
+    //Corrutinas
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.play.services)
+
 }

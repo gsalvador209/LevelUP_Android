@@ -13,7 +13,7 @@
         <ImageView
             android:id="@+id/ivThumb"
             android:src="@drawable/bg_heatmap_cell"
-            android:layout_width="match_parent"
+            android:layout_width="160dp"
             android:layout_height="130dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"/>

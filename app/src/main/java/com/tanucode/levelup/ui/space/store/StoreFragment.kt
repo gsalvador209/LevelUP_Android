@@ -1,5 +1,6 @@
 package com.tanucode.levelup.presentation.ui.store
 
+import BuyProductUseCase
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.tanucode.levelup.application.LevelUpApp
 import com.tanucode.levelup.databinding.FragmentStoreBinding
+import com.tanucode.levelup.domain.model.Product
 import com.tanucode.levelup.domain.usecase.GetProductsUseCase
 import com.tanucode.levelup.domain.usecase.GetPurchasedProductsUseCase
 import com.tanucode.levelup.domain.usecase.PurchaseProductUseCase
@@ -22,15 +25,9 @@ class StoreFragment : Fragment() {
 
     private val viewModel: StoreViewModel by viewModels {
         StoreViewModelFactory(
-            GetProductsUseCase(
-                (requireActivity().application as LevelUpApp).productRepository
-            ),
-            GetPurchasedProductsUseCase(
-                (requireActivity().application as LevelUpApp).ownedStickerRepository
-            ),
-            PurchaseProductUseCase(
-                (requireActivity().application as LevelUpApp).ownedStickerRepository
-            )
+            (requireActivity().application as LevelUpApp).getProductsUseCase,
+            (requireActivity().application as LevelUpApp).getPurchasedProductsUseCase,
+            (requireActivity().application as LevelUpApp).buyProductUseCase
         )
     }
 
@@ -47,7 +44,9 @@ class StoreFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.pbLoading.visibility = View.VISIBLE
         val adapter = StoreAdapter { product ->
-            viewModel.purchaseProduct(product.id)
+
+            viewModel.onBuy(product)
+
         }
         binding.recyclerStore.apply {
             layoutManager = GridLayoutManager(requireContext(),2)
@@ -61,5 +60,18 @@ class StoreFragment : Fragment() {
         viewModel.purchasedIds.observe(viewLifecycleOwner) { ids ->
             adapter.setPurchasedIds(ids)
         }
+        viewModel.buyResult.observe(viewLifecycleOwner) { success ->
+            if (!success) {
+                Snackbar.make(binding.root,
+                    "No tienes monedas suficientes",
+                    Snackbar.LENGTH_SHORT)
+                    .show()
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

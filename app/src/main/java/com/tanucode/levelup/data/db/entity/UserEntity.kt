@@ -25,5 +25,5 @@ data class UserEntity(
 
     @ColumnInfo(name = "registration_date")
     val registrationDate: Date = Date()
-
 )
+
