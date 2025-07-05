@@ -54,43 +54,30 @@ class SpaceEditorFragment : Fragment() {
     }
 
     private fun addSticker(imageUrl: String) {
-        // 1) Creas la vista que contiene gestos
         val stickerView = DraggableStickerView(requireContext()).apply {
             layoutParams = FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT,
                 FrameLayout.LayoutParams.MATCH_PARENT
             )
+            tag = imageUrl
         }
-        // 2) La cargas con Glide
+
         Glide.with(this)
             .load(imageUrl)
             .apply(RequestOptions().override(300, 300))
             .into(stickerView)
-        // 3) La añades al container
+
         binding.stickerContainer.addView(stickerView)
-        saveSpaceState()
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onStop() {
+        super.onStop()
         saveSpaceState()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        saveSpaceState()
         _binding = null
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        saveSpaceState()
-        _binding = null
-    }
-
-    override fun onResume() {
-        super.onResume()
-        loadSpaceState()
     }
 
 
@@ -112,6 +99,7 @@ class SpaceEditorFragment : Fragment() {
     }
 
     private fun loadSpaceState() {
+        binding.stickerContainer.removeAllViews()
         val json = prefs.getString(spaceKey, null) ?: return
         val type = object: TypeToken<List<StickerState>>(){}.type
         val states: List<StickerState> = gson.fromJson(json, type)
@@ -127,7 +115,12 @@ class SpaceEditorFragment : Fragment() {
                 tag = st.imageUrl
                 // aplica la matrix tras cargar la imagen
                 post {
-                    imageMatrix = st.matrixValues.toMatrix()
+                    val restoredMatrix = st.matrixValues.toMatrix()
+                    imageMatrix = restoredMatrix
+
+                    (this as? DraggableStickerView)?.apply {
+                        this.setInternalMatrix(restoredMatrix)
+                    }
                 }
             }
             Glide.with(this)

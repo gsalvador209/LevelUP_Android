@@ -104,7 +104,9 @@ class DraggableStickerView @JvmOverloads constructor(
         return Math.toDegrees(atan2(dy, dx).toDouble()).toFloat()
     }
 
-
+    fun setInternalMatrix(m: Matrix){
+        matrix.set(m)
+    }
 
 
 }
