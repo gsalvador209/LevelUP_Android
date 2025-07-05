@@ -103,4 +103,8 @@ class DraggableStickerView @JvmOverloads constructor(
         val dy = event.getY(0) - event.getY(1)
         return Math.toDegrees(atan2(dy, dx).toDouble()).toFloat()
     }
+
+
+
+
 }

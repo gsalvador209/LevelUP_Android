@@ -4,6 +4,7 @@ package com.tanucode.levelup.ui.main
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.core.view.size
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
@@ -63,6 +64,19 @@ class MainActivity : AppCompatActivity() {
 
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController,appBarConfiguration)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.spaceEditorFragment -> {
+                    // Estamos en el editor de espacios: ocultamos el botón de tareas
+                    binding.fabAdd.isVisible = false
+                }
+                else -> {
+                    // Cualquier otro fragmento: lo mostramos
+                    binding.fabAdd.isVisible = true
+                }
+            }
+        }
 
         //Bottom nav
         binding.bottomNavigation.setupWithNavController(navController)
